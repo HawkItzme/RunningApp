@@ -8,4 +8,6 @@
         <item>Calories Burned</item>
     </string-array>
     <string name="google_maps_key">AIzaSyDN8TkuVh-L-e2E0mWACedNtd6SqPzSRdo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
