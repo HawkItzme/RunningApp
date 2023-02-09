@@ -1,5 +1,6 @@
 package com.example.runningapp.services
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.NotificationManager.IMPORTANCE_LOW
@@ -74,11 +75,13 @@ class TrackingService : LifecycleService() {
                         startForegroundService()
                     }else{
                         Timber.d("Resuming Service...")
+                        startForegroundService()
                     }
                 }
 
                 ACTION_PAUSE_SERVICE -> {
                     Timber.d("Paused service")
+                    pauseService()
                 }
 
                 ACTION_STOP_SERVICE -> {
@@ -90,6 +93,12 @@ class TrackingService : LifecycleService() {
         return super.onStartCommand(intent, flags, startId)
     }
 
+
+    private fun pauseService(){
+        isTracking.postValue(false)
+    }
+
+    @SuppressLint("Missing Permission")
     private fun updateLocationTracking(isTracking: Boolean){
         if (isTracking){
             if (TrackingUtility.hasLocationPermissions(this)){
